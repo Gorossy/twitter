@@ -17,11 +17,9 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-try {
-  mongoose.connect("mongodb+srv://goro:Xpe4ozWGqFA0nDPr@cluster0.umvvjyf.mongodb.net/test?retryWrites=true&w=majority")
-  console.log("Connected to MongoDB");
-} catch (error) {
-    console.log("Could not connect to MongoDB");
-}
+
+mongoose.connect("mongodb+srv://goro:Xpe4ozWGqFA0nDPr@cluster0.umvvjyf.mongodb.net/?retryWrites=true&w=majority")
+    .then(() => console.log('Database Connected'))
+    .catch(err => console.log(err));
 
 app.listen(port, () => console.log("server listening on port: " + port));
