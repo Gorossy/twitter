@@ -1,12 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/users");
+const tweetRoutes = require("./routes/tweets");
+const followerRoutes = require("./routes/followers");
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use("/api", userRoutes);
+app.use("/api", tweetRoutes);
+app.use("/api", followerRoutes);
 
 
 app.get("/", (req, res) => {

@@ -3,13 +3,20 @@ var router = express.Router();
 tweetschema = require('../models/tweets');
 
 //Mostrar todos los tweets
-router.get('/', function(req, res, next) {
+router.get('/tweets', function(req, res, next) {
   tweetschema.find(function (err, tweets) {
     if (err) return next(err);
     res.json(tweets);
   });
 });
 
+//Vista detallada de un tweet por username
+router.get('/tweets/:username', function(req, res, next) {
+    tweetschema.find({username: req.params.username}, function (err, tweets) {
+        if (err) return next(err);
+        res.json(tweets);
+    });
+});
 //Crear tweet
 router.post('/tweets', (req, res) => {
   const tweet = tweetschema(req.body);
